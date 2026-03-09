@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A66C2"/>
+      <stop offset="100%" style="stop-color:#004182"/>
+    </linearGradient>
+  </defs>
+  <rect width="1584" height="396" fill="url(#bg)"/>
+  <text x="792" y="180" font-family="Arial" font-size="48" fill="white" text-anchor="middle" opacity="0.3">Feras H. Al-Bader</text>
+  <text x="792" y="240" font-family="Arial" font-size="24" fill="white" text-anchor="middle" opacity="0.2">Chief Commercial Officer</text>
+</svg>
