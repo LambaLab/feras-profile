@@ -25,7 +25,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
       {/* Photo + Info */}
       <div className="px-4 pb-4">
         {/* Profile photo — overlaps banner */}
-        <div className="-mt-12 mb-2 sm:-mt-16">
+        <div className="relative -mt-12 mb-2 sm:-mt-16">
           <img
             src={profile.photo}
             alt={profile.name}
