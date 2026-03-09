@@ -1,11 +1,57 @@
 // src/components/experience/ExperienceCard.tsx
+import { useState } from 'react'
 import type { Experience } from '../../data/profileData'
 import { CompanyLogo } from '../shared/CompanyLogo'
-import { ShowMoreText } from '../shared/ShowMoreText'
 import { RoleBadge } from './RoleBadge'
 
 interface ExperienceCardProps {
   experience: Experience
+}
+
+function ExperienceDescription({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false)
+
+  // Split into intro paragraph and individual bullet lines
+  const [introPart, ...rest] = text.split('\n\n')
+  const intro = introPart?.trim() ?? ''
+  const bullets = rest.join('\n').split('\n').map(l => l.trim()).filter(Boolean)
+  const hasBullets = bullets.length > 0
+  const isLongIntro = !hasBullets && intro.length > 250
+
+  return (
+    <div className="text-sm text-li-text leading-relaxed">
+      {/* Intro / context paragraph */}
+      <p
+        style={isLongIntro && !expanded ? {
+          display: '-webkit-box',
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: 'vertical' as const,
+          overflow: 'hidden',
+        } : undefined}
+      >
+        {intro}
+      </p>
+
+      {/* Bullet achievements — shown when expanded */}
+      {hasBullets && expanded && (
+        <ul className="mt-2 space-y-1.5 list-disc list-outside ml-4">
+          {bullets.map((line, i) => (
+            <li key={i}>{line}</li>
+          ))}
+        </ul>
+      )}
+
+      {/* Toggle button */}
+      {(hasBullets || isLongIntro) && (
+        <button
+          onClick={() => setExpanded(e => !e)}
+          className="text-li-blue font-semibold hover:underline mt-1 block"
+        >
+          {expanded ? 'see less' : '…see more'}
+        </button>
+      )}
+    </div>
+  )
 }
 
 export function ExperienceCard({ experience: exp }: ExperienceCardProps) {
@@ -27,7 +73,7 @@ export function ExperienceCard({ experience: exp }: ExperienceCardProps) {
         <p className="text-xs text-li-text-tertiary mt-0.5">{dateRange}</p>
         {exp.description && (
           <div className="mt-2">
-            <ShowMoreText text={exp.description} threshold={250} />
+            <ExperienceDescription text={exp.description} />
           </div>
         )}
       </div>
