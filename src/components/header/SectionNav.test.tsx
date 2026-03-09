@@ -14,7 +14,7 @@ describe('SectionNav', () => {
   it('marks the active section', () => {
     render(<SectionNav sections={sections} activeSection="Experience" />)
     const active = screen.getByText('Experience').closest('a')
-    expect(active).toHaveAttribute('aria-current', 'true')
+    expect(active).toHaveAttribute('aria-current', 'page')
   })
 
   it('non-active sections do not have aria-current', () => {

@@ -22,11 +22,11 @@ export function EducationSection({ education, certifications, languages }: Educa
         </div>
       </SectionWrapper>
 
-      <SectionWrapper>
+      <SectionWrapper title="Licenses &amp; Certifications">
         <CertificationList certifications={certifications} />
       </SectionWrapper>
 
-      <SectionWrapper>
+      <SectionWrapper title="Languages">
         <LanguageList languages={languages} />
       </SectionWrapper>
     </div>

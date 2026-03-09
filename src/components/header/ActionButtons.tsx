@@ -5,7 +5,7 @@ interface ActionButtonsProps {
 
 export function ActionButtons({ linkedinUrl, email }: ActionButtonsProps) {
   return (
-    <div className="flex flex-wrap items-center gap-2 px-4 pb-4">
+    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 px-4 pb-4">
       <a
         href={linkedinUrl}
         target="_blank"

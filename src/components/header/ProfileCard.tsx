@@ -6,10 +6,10 @@ interface ProfileCardProps {
 
 export function ProfileCard({ profile }: ProfileCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-li-card overflow-hidden">
+    <>
       {/* Banner */}
       <div
-        className="relative h-40 sm:h-28 overflow-hidden"
+        className="relative h-[100px] sm:h-40 overflow-hidden"
         style={{ background: 'linear-gradient(135deg, #0A66C2 0%, #004182 100%)' }}
       >
         {profile.banner && (
@@ -25,13 +25,13 @@ export function ProfileCard({ profile }: ProfileCardProps) {
       {/* Photo + Info */}
       <div className="px-4 pb-4">
         {/* Profile photo — overlaps banner */}
-        <div className="-mt-16 mb-2 sm:-mt-12">
+        <div className="-mt-12 mb-2 sm:-mt-16">
           <img
             src={profile.photo}
             alt={profile.name}
             width={128}
             height={128}
-            className="w-32 h-32 sm:w-24 sm:h-24 rounded-full border-4 border-white object-cover bg-gray-200"
+            className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white object-cover bg-gray-200"
           />
         </div>
 
@@ -56,6 +56,6 @@ export function ProfileCard({ profile }: ProfileCardProps) {
           </a>
         </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -1,6 +1,8 @@
 // src/components/shared/SectionWrapper.tsx
+import type { ReactNode } from 'react'
+
 interface SectionWrapperProps {
-  children: React.ReactNode
+  children: ReactNode
   title?: string
   id?: string
   className?: string

@@ -44,3 +44,7 @@ nav div::-webkit-scrollbar {
   display: none;
 }
 
+/* Smooth scroll for section anchor navigation */
+html {
+  scroll-behavior: smooth;
+}
