@@ -9,3 +9,38 @@
   }
 }
 
+/* ================================
+   Mobile responsive — LinkedIn style
+   ================================ */
+
+@media (max-width: 640px) {
+  /* Cards go edge-to-edge on mobile, no border-radius, no shadow */
+  section.bg-white,
+  .bg-white.rounded-lg {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #E0DFDC;
+  }
+
+  /* Remove top/bottom padding on main container */
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    gap: 0 !important;
+  }
+
+  /* Small gap between sections using border instead of gap */
+  main > * {
+    margin-bottom: 8px;
+  }
+}
+
+/* Hide scrollbar on SectionNav but keep scrollable */
+nav [style*="scrollbarWidth"] {
+  -ms-overflow-style: none;
+}
+
+nav div::-webkit-scrollbar {
+  display: none;
+}
+

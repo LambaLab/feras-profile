@@ -37,9 +37,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-li-bg">
-      <main className="max-w-3xl mx-auto py-4 sm:py-0 flex flex-col gap-2">
+      <main className="max-w-3xl mx-auto py-4 sm:py-0 flex flex-col sm:gap-2 gap-0">
         {/* Header card: banner + photo + name + action buttons */}
-        <div className="bg-white rounded-lg shadow-li-card overflow-hidden sm:rounded-none">
+        <div className="bg-white sm:rounded-lg shadow-li-card overflow-hidden">
           <ProfileCard profile={profile} />
           <ActionButtons linkedinUrl={profile.linkedinUrl} email={profile.email} />
         </div>
