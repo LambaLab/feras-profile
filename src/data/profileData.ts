@@ -81,9 +81,9 @@ export const profile: Profile = {
   location: 'Riyadh, Saudi Arabia',
   connections: '500+',
   linkedinUrl: 'https://www.linkedin.com/in/nasserff/',
-  email: '',
-  photo: '/profile-photo.svg',
-  banner: '/banner.svg',
+  email: 'nasserff@gmail.com',
+  photo: '/profile-photo.jpg',
+  banner: '/banner.jpg',
 
   about: `I build revenue engines — the systems, teams, and strategies that turn ambitious companies into category leaders.
 
