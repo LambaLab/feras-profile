@@ -13,9 +13,11 @@ export default {
         'li-text':       'rgba(0,0,0,0.9)',
         'li-text-secondary': 'rgba(0,0,0,0.6)',
         'li-text-tertiary':  'rgba(0,0,0,0.4)',
+        'li-white':          '#FFFFFF',
+        'li-green':          '#057642',
       },
       fontFamily: {
-        sans: ['-apple-system', 'system-ui', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       boxShadow: {
         'li-card': '0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05)',
