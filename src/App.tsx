@@ -1,6 +1,6 @@
 // src/App.tsx
 import { useEffect, useState } from 'react'
-import { profile } from './data/profileData'
+import type { Profile } from './data/profileData'
 import { ProfileCard } from './components/header/ProfileCard'
 import { ActionButtons } from './components/header/ActionButtons'
 import { SectionNav } from './components/header/SectionNav'
@@ -12,12 +12,15 @@ import { ActivitySection } from './components/activity/ActivitySection'
 
 const NAV_SECTIONS = ['About', 'Experience', 'Skills', 'Education', 'Activity']
 
-export default function App() {
+interface AppProps {
+  profile: Profile
+}
+
+export default function App({ profile }: AppProps) {
   const [activeSection, setActiveSection] = useState('About')
 
   useEffect(() => {
     const handleScroll = () => {
-      // Walk sections in reverse to find the highest one scrolled past the nav
       for (const section of [...NAV_SECTIONS].reverse()) {
         const el = document.getElementById(section.toLowerCase())
         if (el) {
@@ -38,16 +41,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-li-bg">
       <main className="max-w-3xl mx-auto py-4 sm:py-0 flex flex-col sm:gap-2 gap-0">
-        {/* Header card: banner + photo + name + action buttons */}
         <div className="bg-white sm:rounded-lg shadow-li-card overflow-hidden">
           <ProfileCard profile={profile} />
           <ActionButtons linkedinUrl={profile.linkedinUrl} email={profile.email} />
         </div>
-
-        {/* Sticky section navigation */}
         <SectionNav sections={NAV_SECTIONS} activeSection={activeSection} />
-
-        {/* Content sections */}
         <AboutSection text={profile.about} />
         <ExperienceSection experience={profile.experience} />
         <SkillsSection skills={profile.skills} />
@@ -61,8 +59,6 @@ export default function App() {
           featuredArticle={profile.featuredArticle}
           profile={profile}
         />
-
-        {/* Footer spacer */}
         <div className="h-8" />
       </main>
     </div>
