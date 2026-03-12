@@ -82,6 +82,7 @@ Managed key stakeholder relationships with enterprise clients and government ent
       'Merchant Success', 'B2B', 'Saudi Vision 2030', 'GCC Markets', 'FinTech', 'HealthTech',
       'Marketplace Platforms', 'Management Consulting', 'Digital Payments', 'Insurance Tech',
     ],
+    // soft and emerging skill categories are intentionally inherited unchanged from profile
   },
 
   posts: [
@@ -127,6 +128,7 @@ What's the biggest commercial gap you're seeing in the Saudi entertainment or re
       reactions: 847,
       comments: 63,
     },
-    profile.posts[2],
+    // 'building-teams' post inherited unchanged from base profile
+    profile.posts.find(p => p.id === 'building-teams')!,
   ],
 }
