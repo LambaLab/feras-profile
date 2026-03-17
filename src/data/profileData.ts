@@ -85,19 +85,15 @@ export const profile: Profile = {
   photo: '/profile-photo.jpg',
   banner: '/banner.jpg',
 
-  about: `I build revenue engines — the systems, teams, and strategies that turn ambitious companies into category leaders.
+  about: `I've spent 18 years building commercial teams and revenue systems across Saudi Arabia's fastest-growing industries, serving as a Chief Commercial Officer, Chief Revenue Officer, and Chief Operating Officer.
 
-Over 18 years, I've owned full commercial P&Ls, redesigned go-to-market strategies from scratch, and deployed AI to accelerate growth across Saudi Arabia's most dynamic industries. My background sits at an uncommon intersection: I hold an M.Sc. in Artificial Intelligence and have spent my career in the commercial trenches — as a Chief Commercial Officer, a Chief Revenue Officer, and a Chief Operating Officer — building the organizations and revenue operating systems that actually generate results at scale.
+My background sits at an unusual intersection: I hold an M.Sc. in Artificial Intelligence from KFUPM and have spent my career on the commercial side. I deploy AI in commercial systems and own the P&L it affects.
 
-At Zid, I architected the entire commercial function from zero — spanning Sales, Onboarding, Merchant Success, and Customer Operations — scaling it into a 100+ person team that acquired 12,000+ merchants and drove 3B SAR in cumulative GMV within two years. The goal was never just hitting a number. It was designing a commercial architecture that scaled sustainably, with the right data, the right people, and the right structure.
+At Zid, I built the entire commercial function from scratch, scaling it to a 100+ person team that acquired 12,000+ merchants and drove 3B SAR in cumulative GMV within two years. At FlyAkeed, I restructured the revenue organisation (40% cost reduction while sustaining growth) and deployed an AI-powered commercial engine, including AI SDR, that has transformed our pipeline and customer acquisition.
 
-At FlyAkeed, I'm building the next chapter: restructuring the revenue organization for efficiency (40% operational cost reduction while sustaining GBV and SaaS revenue growth), and pioneering an AI-powered commercial engine — including AI SDR deployment — that's redefining our pipeline velocity and cost of acquisition.
+I'm a Saudi national with deep roots in the GCC, having worked from management consulting at EY to building national infrastructure at Najm (under SAMA), to scaling Zid and FlyAkeed. I'm equally comfortable navigating enterprise stakeholders, Vision 2030 entities, and high-growth tech companies.
 
-My conviction: most commercial problems are architecture problems. The right revenue model, the right data infrastructure, the right team design, the right go-to-market motion — these aren't soft concepts. They are the difference between a company that grows and one that grinds. I bring the full stack: strategy, systems, AI, people, and the GCC market relationships to execute across sectors.
-
-I'm a Saudi national deeply rooted in the GCC commercial landscape — from management consulting at EY to building national infrastructure at Najm (under SAMA), to scaling category-leading companies like Zid and FlyAkeed. I'm equally comfortable navigating enterprise stakeholders, Saudi Vision 2030 entities, and high-growth tech companies.
-
-Specialties: Revenue Architecture | Go-to-Market Strategy (GTM) | Commercial Transformation | AI-Powered Growth | Revenue Operations (RevOps) | Product-Led Growth (PLG) | P&L Management | SaaS | E-Commerce | Travel Tech | Enterprise Sales | Digital Transformation | Saudi Vision 2030 | GCC Markets`,
+Specialties: Revenue Architecture | Go-to-Market Strategy | Commercial Transformation | AI-Powered Growth | P&L Management | SaaS | E-Commerce | Travel Tech | Saudi Vision 2030 | GCC Markets`,
 
   experience: [
     {
@@ -111,22 +107,22 @@ Specialties: Revenue Architecture | Go-to-Market Strategy (GTM) | Commercial Tra
       type: 'employment',
       description: `FlyAkeed is Saudi Arabia's leading corporate travel management and SaaS platform, helping organisations streamline business travel, control costs, and optimise spend through technology.
 
-Lead the full revenue organisation across Sales, BD & Partnerships, Customer Success & Account Management, and Marketing — with full P&L accountability for GBV and SaaS revenue growth.
-Restructured the revenue organisation for efficiency, reducing operational costs by 40% while sustaining business revenue growth across both GBV and SaaS lines — resetting the commercial architecture without sacrificing momentum.
-Pioneered an AI-powered commercial engine, deploying AI SDR and AI-driven lead generation and nurturing workflows — significantly accelerating pipeline velocity and reducing cost of acquisition.
+Lead the full revenue organisation across Sales, BD & Partnerships, Customer Success & Account Management, and Marketing, with full P&L accountability for GBV and SaaS revenue growth.
+Restructured the revenue organisation for efficiency, reducing operational costs by 40% while sustaining business revenue growth across both GBV and SaaS lines, resetting the commercial architecture without sacrificing momentum.
+Pioneered an AI-powered commercial engine, deploying AI SDR and AI-driven lead generation and nurturing workflows that significantly accelerated pipeline velocity and reduced cost of acquisition.
 Opened new revenue streams by identifying and closing project-based commercial opportunities, diversifying FlyAkeed's income beyond core subscription and transaction revenue.
-Revamped the Customer Success function to reduce churn and improve NPS, repositioning CS as a commercial retention and growth function — integrating it fully into the revenue operating system rather than treating it as a cost centre.`,
+Revamped the Customer Success function to reduce churn and improve NPS, repositioning CS as a commercial retention and growth function, integrating it fully into the revenue operating system rather than treating it as a cost centre.`,
     },
     {
       id: 'majmaah-advisory',
       title: 'Advisory Board Member',
-      company: 'Majmaah University — Dept. of Computer Science',
+      company: 'Majmaah University, Dept. of Computer Science',
       domain: 'mu.edu.sa',
       startDate: 'May 2024',
       endDate: 'Present',
       location: '',
       type: 'advisory',
-      description: `Member of the Advisory Board for the Department of Computer Science and Information Technology at Majmaah University — contributing expertise in AI applications, commercial technology strategy, and industry-academia alignment in support of Saudi Vision 2030 digital economy goals.`,
+      description: `Member of the Advisory Board for the Department of Computer Science and Information Technology at Majmaah University, contributing expertise in AI applications, commercial technology strategy, and industry-academia alignment in support of Saudi Vision 2030 digital economy goals.`,
     },
     {
       id: 'zid-cco',
@@ -139,11 +135,11 @@ Revamped the Customer Success function to reduce churn and improve NPS, repositi
       type: 'employment',
       description: `Zid is Saudi Arabia's leading e-commerce enablement platform, powering thousands of merchants to launch, operate, and grow their digital commerce businesses across the Kingdom.
 
-Architected and scaled Zid's entire commercial function from the ground up — spanning Sales, Onboarding, Merchant Success, and Customer Operations — building a 100+ person organisation that generated 30M SAR in revenue and acquired 12,000+ merchants within two years.
-Owned full commercial P&L accountability, driving 3B SAR in cumulative GMV and setting a record monthly high of 300M SAR — through strategic resource allocation and cross-functional alignment across the merchant lifecycle.
-Executed a company-wide commercial strategy reset — redesigning pricing, relaunching the product offering, and leading competitive benchmarking — converting 3,000 paid merchants onto the new entry package within one month of launch.
-Championed a strategic shift to product-led growth (PLG), reducing average time-to-subscribe from 13 to 4 days — directly compressing the sales cycle, improving unit economics, and embedding go-to-market efficiency into the product itself.
-Won 30+ high-value enterprise key accounts away from entrenched competitors — personally driving the strategy to identify, pursue, and convert enterprise merchants and expanding Zid's market share in competitive segments.`,
+Architected and scaled Zid's entire commercial function from the ground up, spanning Sales, Onboarding, Merchant Success, and Customer Operations, building a 100+ person organisation that generated 30M SAR in revenue and acquired 12,000+ merchants within two years.
+Owned full commercial P&L accountability, driving 3B SAR in cumulative GMV and setting a record monthly high of 300M SAR through strategic resource allocation and cross-functional alignment across the merchant lifecycle.
+Executed a company-wide commercial strategy reset: redesigned pricing, relaunched the product offering, and led competitive benchmarking, converting 3,000 paid merchants onto the new entry package within one month of launch.
+Championed a strategic shift to product-led growth (PLG), reducing average time-to-subscribe from 13 to 4 days, directly compressing the sales cycle, improving unit economics, and embedding go-to-market efficiency into the product itself.
+Won 30+ high-value enterprise key accounts away from entrenched competitors by personally driving the strategy to identify, pursue, and convert enterprise merchants and expanding Zid's market share in competitive segments.`,
     },
     {
       id: 'medformatix-board',
@@ -176,7 +172,7 @@ Won 30+ high-value enterprise key accounts away from entrenched competitors — 
       endDate: 'Oct 2020',
       location: 'Riyadh, Saudi Arabia',
       type: 'employment',
-      description: `Led cross-functional operations across product, technology, finance, and commercial teams during FlyAkeed's early-stage scale-up — establishing the operational infrastructure that enabled commercial growth across the GCC corporate travel market.
+      description: `Led cross-functional operations across product, technology, finance, and commercial teams during FlyAkeed's early-stage scale-up, establishing the operational infrastructure that enabled commercial growth across the GCC corporate travel market.
 Drove organisational design and operational process-building that allowed the business to grow its enterprise customer base and expand its travel management SaaS offering.
 Established vendor relationships, partnership frameworks, and internal performance systems that positioned FlyAkeed for its next phase of commercial expansion.`,
     },
@@ -200,7 +196,7 @@ Established vendor relationships, partnership frameworks, and internal performan
       endDate: 'Aug 2018',
       location: 'Riyadh, Saudi Arabia',
       type: 'employment',
-      description: `Led enterprise-scale business development and strategic partnerships across Tihama Group's diversified portfolio — identifying and closing high-value commercial opportunities across multiple verticals.
+      description: `Led enterprise-scale business development and strategic partnerships across Tihama Group's diversified portfolio, identifying and closing high-value commercial opportunities across multiple verticals.
 Drove corporate performance frameworks including KPI design, organisational alignment, and revenue growth programmes across business units.
 Managed key stakeholder relationships with enterprise clients and government entities, leveraging deep GCC market relationships to accelerate commercial outcomes.`,
     },
@@ -213,7 +209,7 @@ Managed key stakeholder relationships with enterprise clients and government ent
       endDate: 'Aug 2016',
       location: 'Riyadh, Saudi Arabia',
       type: 'employment',
-      description: `Served as official spokesman for Najm — managing all external communications under the regulatory oversight of the Saudi Arabian Monetary Authority (SAMA). Led communications strategy across media, government relations, and public affairs for Saudi Arabia's national motor insurance information company.`,
+      description: `Served as official spokesman for Najm, managing all external communications under the regulatory oversight of the Saudi Arabian Monetary Authority (SAMA). Led communications strategy across media, government relations, and public affairs for Saudi Arabia's national motor insurance information company.`,
     },
     {
       id: 'najm-pm',
@@ -224,7 +220,7 @@ Managed key stakeholder relationships with enterprise clients and government ent
       endDate: 'Jun 2014',
       location: 'Riyadh, Saudi Arabia',
       type: 'employment',
-      description: `Developed and managed the Saudi National Information Center for Motor Insurance (NajmNet) — a national infrastructure project that digitised the Kingdom's motor insurance data ecosystem across every licensed insurer in Saudi Arabia.
+      description: `Developed and managed the Saudi National Information Center for Motor Insurance (NajmNet), a national infrastructure project that digitised the Kingdom's motor insurance data ecosystem across every licensed insurer in Saudi Arabia.
 
 Delivered end-to-end project management across design, development, and full national rollout. NajmNet is now the backbone of Saudi Arabia's motor insurance information infrastructure.`,
     },
@@ -237,23 +233,23 @@ Delivered end-to-end project management across design, development, and full nat
       endDate: 'Nov 2012',
       location: 'Riyadh, Saudi Arabia',
       type: 'employment',
-      description: `Co-founded and led Al-Dar Darak — an innovative real estate advisory and home-search service pioneering a customer-centric, consultative model in a market dominated by traditional brokers.
+      description: `Co-founded and led Al-Dar Darak, an innovative real estate advisory and home-search service pioneering a customer-centric, consultative model in a market dominated by traditional brokers.
 
 Built the business from concept to full operations: team hiring, product design, revenue model architecture, client acquisition, and partnership development.
-Established a differentiated go-to-market model focused on representing the buyer rather than the inventory — generating revenue through advisory fees rather than listing commissions.`,
+Established a differentiated go-to-market model focused on representing the buyer rather than the inventory, generating revenue through advisory fees rather than listing commissions.`,
     },
     {
       id: 'ey-consultant',
-      title: 'Consultant — Business Management Advisory Services',
+      title: 'Consultant, Business Management Advisory Services',
       company: 'Ernst & Young (EY)',
       domain: 'ey.com',
       startDate: 'Mar 2006',
       endDate: 'Mar 2008',
       location: 'Riyadh, Saudi Arabia',
       type: 'employment',
-      description: `Built my commercial and strategic foundation at EY — working across government and private sector organisations on strategy, process improvement, and organisational transformation.
+      description: `Built my commercial and strategic foundation at EY, working across government and private sector organisations on strategy, process improvement, and organisational transformation.
 
-Key engagements: Ministry of Municipal & Rural Affairs (MoMRA) — IT Strategy & Planning · Ministry of Water and Electricity (MoWE) — HR and Change Management · Public Investment Fund (PIF) — Organisation Restructuring · Muttahed Holding Company — Business Process Improvement · Saline Water Conversion Corporation (SWCC) — Business Case for ERP Implementation · Saudi Arabia General Investment Authority (SAGIA) — Financial Transformation`,
+Key engagements: Ministry of Municipal & Rural Affairs (MoMRA): IT Strategy & Planning · Ministry of Water and Electricity (MoWE): HR and Change Management · Public Investment Fund (PIF): Organisation Restructuring · Muttahed Holding Company: Business Process Improvement · Saline Water Conversion Corporation (SWCC): Business Case for ERP Implementation · Saudi Arabia General Investment Authority (SAGIA): Financial Transformation`,
     },
   ],
 
@@ -266,7 +262,7 @@ Key engagements: Ministry of Municipal & Rural Affairs (MoMRA) — IT Strategy &
       field: 'Artificial Intelligence',
       startYear: 2020,
       endYear: 2021,
-      description: `One of the few commercial executives in the GCC with a formal graduate credential in Artificial Intelligence. This M.Sc. is the academic foundation for my work deploying AI in commercial systems — from AI SDR and lead-generation automation at FlyAkeed to the data-driven revenue architecture that underpins my approach to go-to-market strategy and commercial decision-making.`,
+      description: `One of the few commercial executives in the GCC with a formal graduate credential in Artificial Intelligence. This M.Sc. is the academic foundation for my work deploying AI in commercial systems, from AI SDR and lead-generation automation at FlyAkeed to the data-driven revenue architecture that underpins my approach to go-to-market strategy and commercial decision-making.`,
     },
     {
       id: 'kfupm-bsc',
@@ -276,23 +272,23 @@ Key engagements: Ministry of Municipal & Rural Affairs (MoMRA) — IT Strategy &
       field: 'Management Information Systems (MIS)',
       startYear: 2000,
       endYear: 2006,
-      description: `Management Information Systems gave me the systems-thinking foundation that underpins everything I do commercially — understanding how data, technology, and process interact to generate business outcomes. The bridge between MIS and AI is the through-line of my career.`,
+      description: `Management Information Systems gave me the systems-thinking foundation that underpins everything I do commercially: understanding how data, technology, and process interact to generate business outcomes. The bridge between MIS and AI is the through-line of my career.`,
     },
   ],
 
   certifications: [
     {
-      name: 'Miller Heiman Sales Excellence — Strategic Selling',
+      name: 'Miller Heiman Sales Excellence: Strategic Selling',
       issuer: 'Miller Heiman Group',
       domain: 'millerheiman.com',
     },
     {
-      name: 'Miller Heiman Sales Excellence — Conceptual Selling',
+      name: 'Miller Heiman Sales Excellence: Conceptual Selling',
       issuer: 'Miller Heiman Group',
       domain: 'millerheiman.com',
     },
     {
-      name: 'Miller Heiman Sales Excellence — Large Account Management Process (LAMP)',
+      name: 'Miller Heiman Sales Excellence: Large Account Management Process (LAMP)',
       issuer: 'Miller Heiman Group',
       domain: 'millerheiman.com',
     },
@@ -338,17 +334,17 @@ Key engagements: Ministry of Municipal & Rural Affairs (MoMRA) — IT Strategy &
 
 I learned this the hard way at Zid.
 
-When I joined as CCO, we had a fragmented commercial operation — no shared structure between Sales, Onboarding, Merchant Success, and Customer Operations. Teams were running in parallel, not in sequence. The result: slow merchant activation, high churn risk, and a ceiling on growth.
+When I joined as CCO, we had a fragmented commercial operation with no shared structure between Sales, Onboarding, Merchant Success, and Customer Operations. Teams were running in parallel, not in sequence. The result: slow merchant activation, high churn risk, and a ceiling on growth.
 
 We didn't solve it by hiring more salespeople.
 We solved it by redesigning the architecture.
 
 Here is what Revenue Architecture actually means:
 
-The right revenue model. Not just pricing — the full logic of how value is created, captured, and retained.
+The right revenue model. Not just pricing, but the full logic of how value is created, captured, and retained.
 The right data infrastructure. Every commercial decision needs a feedback loop. Without data, you're flying blind.
 The right team design. Structure follows strategy. If your org chart doesn't match your go-to-market motion, you will fight yourself every quarter.
-The right handoff sequencing. Sales, Onboarding, Success — these are not departments. They are stages in one continuous commercial system.
+The right handoff sequencing. Sales, Onboarding, Success: these are not departments. They are stages in one continuous commercial system.
 
 The outcome at Zid:
 3B SAR in cumulative GMV
@@ -359,7 +355,7 @@ Time-to-subscribe cut from 13 days to 4 days
 None of that came from working harder.
 It came from designing the right system.
 
-If you're scaling a commercial operation in the GCC and hitting invisible ceilings — I'd be willing to bet the ceiling is an architecture issue, not a talent issue.
+If you're scaling a commercial operation in the GCC and hitting invisible ceilings, I'd be willing to bet the ceiling is an architecture issue, not a talent issue.
 
 What's the one part of your commercial architecture you'd rebuild if you could start over?`,
       reactions: 847,
@@ -367,7 +363,7 @@ What's the one part of your commercial architecture you'd rebuild if you could s
     },
     {
       id: 'ai-sdr',
-      body: `I deployed an AI SDR this year. Here is what I got wrong first — and what changed when we got it right.
+      body: `I deployed an AI SDR this year. Here is what I got wrong first, and what changed when we got it right.
 
 At FlyAkeed, I made a common mistake early on.
 We treated the AI SDR as a replacement for human outreach. More volume, lower cost. Simple math.
@@ -375,23 +371,23 @@ We treated the AI SDR as a replacement for human outreach. More volume, lower co
 It didn't work.
 
 The problem wasn't the AI. The problem was the architecture.
-We fed it generic lead lists with no enrichment. No segmentation logic. No clear handoff protocol to human reps. The AI was sophisticated — but it was running on a broken commercial system.
+We fed it generic lead lists with no enrichment. No segmentation logic. No clear handoff protocol to human reps. The AI was sophisticated, but it was running on a broken commercial system.
 
 When we rebuilt the architecture:
 Enriched input first. AI SDR only works if the data feeding it is clean, segmented, and commercially meaningful.
 Defined the handoff precisely. AI qualifies. Human closes. The boundary matters more than the AI itself.
 Integrated into the revenue operating system. Every AI-generated lead enters the same pipeline, the same CRM logic, the same tracking. No parallel universe.
 
-The result: pipeline velocity increased significantly. Cost of acquisition dropped. And our human reps spent their time on conversations that mattered — not prospecting.
+The result: pipeline velocity increased significantly. Cost of acquisition dropped. And our human reps spent their time on conversations that mattered, not prospecting.
 
 The lesson I'd share with any CCO or CRO thinking about AI SDR:
 
 AI in commercial functions is not a shortcut. It is a multiplier.
 And multipliers only work when the underlying system is sound.
 
-I have an M.Sc. in AI. But the most important lesson AI taught me is that technology doesn't fix broken processes — it amplifies them.
+I have an M.Sc. in AI. But the most important lesson AI taught me is that technology doesn't fix broken processes. It amplifies them.
 
-What is one AI tool you've deployed commercially that worked better than expected — or worse? I'm curious what others are seeing.`,
+What is one AI tool you've deployed commercially that worked better than expected, or worse? I'm curious what others are seeing.`,
       reactions: 1204,
       comments: 91,
     },
@@ -408,14 +404,14 @@ Three things I learned from building that system from scratch:
 
 Hire for the motion, not the title. In a zero-to-one build, you need people who thrive in ambiguity. A brilliant VP from a scaled company can be the wrong hire at the wrong time. I learned to read for adaptability first, expertise second.
 Design the handoffs before you fill the seats. I made the mistake of hiring Sales before Onboarding was defined. We acquired merchants faster than we could activate them. The commercial architecture has to precede the headcount.
-Your culture is set in the first 10 hires. Everything after that is either compounding or correcting. I was fortunate to get the first 10 mostly right. The commercial team's character — data-driven, customer-obsessed, commercially rigorous — came from those early decisions.
+Your culture is set in the first 10 hires. Everything after that is either compounding or correcting. I was fortunate to get the first 10 mostly right. The commercial team's character, data-driven, customer-obsessed, and commercially rigorous, came from those early decisions.
 
-By the time I left Zid, the team had scaled to 100+ people — and had acquired 12,000+ merchants, driven 3B SAR in cumulative GMV, and set a monthly GMV record of 300M SAR.
+By the time I left Zid, the team had scaled to 100+ people and had acquired 12,000+ merchants, driven 3B SAR in cumulative GMV, and set a monthly GMV record of 300M SAR.
 
 Not because of any one person.
 Because the system worked.
 
-If you're currently building a commercial team from scratch — what's the hardest part you didn't expect?`,
+If you're currently building a commercial team from scratch, what's the hardest part you didn't expect?`,
       reactions: 932,
       comments: 74,
     },
@@ -423,6 +419,6 @@ If you're currently building a commercial team from scratch — what's the harde
 
   featuredArticle: {
     title: 'Revenue Architecture: How I Built a 3B SAR GMV Commercial Engine from Scratch',
-    description: 'Most commercial problems are architecture problems. Here is the blueprint I used at Zid — and why designing the engine matters more than running it.',
+    description: 'Most commercial problems are architecture problems. Here is the blueprint I used at Zid, and why designing the engine matters more than running it.',
   },
 }

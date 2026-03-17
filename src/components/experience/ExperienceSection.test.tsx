@@ -16,7 +16,7 @@ describe('ExperienceSection', () => {
 
   it('renders the oldest role (EY)', () => {
     render(<ExperienceSection experience={profile.experience} />)
-    expect(screen.getByText(/Consultant — Business Management Advisory Services/)).toBeInTheDocument()
+    expect(screen.getByText(/Consultant, Business Management Advisory Services/)).toBeInTheDocument()
   })
 
   it('has section id="experience"', () => {
