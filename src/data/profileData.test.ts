@@ -8,13 +8,13 @@ describe('profileData', () => {
     expect(profile.location).toBe('Riyadh, Saudi Arabia')
   })
 
-  it('has 12 experience entries', () => {
-    expect(profile.experience).toHaveLength(12)
+  it('has 13 experience entries', () => {
+    expect(profile.experience).toHaveLength(13)
   })
 
-  it('has current role at FlyAkeed', () => {
+  it('has current role at Winning by Design', () => {
     expect(profile.experience[0].endDate).toBe('Present')
-    expect(profile.experience[0].company).toBe('FlyAkeed')
+    expect(profile.experience[0].company).toBe('Winning by Design Growth Institute')
   })
 
   it('has 2 education entries', () => {

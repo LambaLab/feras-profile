@@ -4,20 +4,20 @@ import { ExperienceCard } from './ExperienceCard'
 import { profile } from '../../data/profileData'
 
 describe('ExperienceCard', () => {
-  const currentRole = profile.experience[0] // FlyAkeed CCRO
+  const flyakeedRole = profile.experience.find(e => e.id === 'flyakeed-ccro')!
 
   it('renders role title', () => {
-    render(<ExperienceCard experience={currentRole} />)
+    render(<ExperienceCard experience={flyakeedRole} />)
     expect(screen.getByText('Chief Commercial & Revenue Officer')).toBeInTheDocument()
   })
 
   it('renders company name', () => {
-    render(<ExperienceCard experience={currentRole} />)
+    render(<ExperienceCard experience={flyakeedRole} />)
     expect(screen.getByText('FlyAkeed')).toBeInTheDocument()
   })
 
   it('renders date range including Present', () => {
-    render(<ExperienceCard experience={currentRole} />)
+    render(<ExperienceCard experience={flyakeedRole} />)
     expect(screen.getByText(/Jul 2024/)).toBeInTheDocument()
     expect(screen.getByText(/Present/)).toBeInTheDocument()
   })
@@ -30,7 +30,7 @@ describe('ExperienceCard', () => {
   })
 
   it('does NOT render a badge for employment roles', () => {
-    render(<ExperienceCard experience={currentRole} />)
+    render(<ExperienceCard experience={flyakeedRole} />)
     expect(screen.queryByText('Board Member')).toBeNull()
     expect(screen.queryByText('Advisory')).toBeNull()
   })

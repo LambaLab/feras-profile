@@ -97,6 +97,17 @@ Specialties: Revenue Architecture | Go-to-Market Strategy | Commercial Transform
 
   experience: [
     {
+      id: 'wbd-founding',
+      title: 'Founding Member',
+      company: 'Winning by Design Growth Institute',
+      domain: 'winningbydesign.com',
+      startDate: 'Oct 2025',
+      endDate: 'Present',
+      location: 'Remote',
+      type: 'employment',
+      description: `The Growth Institute is an executive community built by Winning by Design for senior leaders who want to move beyond tactics and design systems that scale. It brings together C-suite executives and growth leaders who are rethinking how growth actually works in the age of AI.`,
+    },
+    {
       id: 'flyakeed-ccro',
       title: 'Chief Commercial & Revenue Officer',
       company: 'FlyAkeed',
@@ -178,14 +189,24 @@ Established vendor relationships, partnership frameworks, and internal performan
     },
     {
       id: 'waseel-committee',
-      title: 'Business Development Committee Member',
+      title: 'Business Development and Research',
       company: 'Waseel ASP Ltd.',
       domain: 'waseel.com',
-      startDate: 'Jun 2020',
-      endDate: 'Feb 2022',
+      startDate: 'Mar 2008',
+      endDate: 'Oct 2009',
       location: 'Riyadh, Saudi Arabia',
-      type: 'committee',
-      description: `Strategic input on commercial partnerships, revenue growth initiatives, and market expansion in healthcare technology and insurance sectors.`,
+      type: 'employment',
+      description: `Waseel ASP is a healthcare technology company providing digital solutions for the Saudi insurance and healthcare sectors.
+
+Business Development and Corporate Sales
+Project costing
+Project Manager and Consultant, NajmNet Study Project
+Project Manager, NajmNet Implementation
+Project Manager, Saudi Aramco Healthcare Link Integration - Pilot Project
+Participated in Waseel Internal process improvement and re-engineering
+Participated in Waseel CRM software selection
+Participated in Waseel infrastructure/architecture improvement and optimization
+Conducted a study on system/application integration tools and solutions`,
     },
     {
       id: 'tihama-svp',
