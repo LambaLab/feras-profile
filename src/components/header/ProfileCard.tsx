@@ -9,7 +9,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
     <>
       {/* Banner */}
       <div
-        className="relative h-[100px] sm:h-40 overflow-hidden"
+        className="relative h-[100px] sm:h-40 overflow-hidden sm:rounded-t-lg"
         style={{ background: 'linear-gradient(135deg, #0A66C2 0%, #004182 100%)' }}
       >
         {profile.banner && (

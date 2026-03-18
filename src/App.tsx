@@ -41,7 +41,7 @@ export default function App({ profile }: AppProps) {
   return (
     <div className="min-h-screen bg-li-bg">
       <main className="max-w-3xl mx-auto py-4 sm:py-0 flex flex-col sm:gap-2 gap-0">
-        <div className="bg-white sm:rounded-lg shadow-li-card overflow-hidden">
+        <div className="bg-white sm:rounded-lg shadow-li-card">
           <ProfileCard profile={profile} />
           <ActionButtons linkedinUrl={profile.linkedinUrl} email={profile.email} profile={profile} />
         </div>
