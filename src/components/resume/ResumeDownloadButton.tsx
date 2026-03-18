@@ -3,21 +3,23 @@ import { useState, useRef, useEffect } from 'react'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import { ResumePDF } from './ResumePDF'
 import { generateDocxBlob } from './generateDocx'
+import { getGoogleAccessToken } from '../../lib/googleAuth'
+import { uploadDocxToDrive } from '../../lib/uploadToDrive'
 import type { Profile } from '../../data/profileData'
 
 interface ResumeDownloadButtonProps {
   profile: Profile
-  /** 'pill' = desktop dropdown pill; 'menu-item' = flat items for parent dropdown */
   variant: 'pill' | 'menu-item'
-  /** Called after any download action (to close a parent dropdown if needed) */
   onClose?: () => void
 }
+
+type GoogleDocStatus = 'idle' | 'signing-in' | 'uploading' | 'error'
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 }
 
-async function triggerDocxDownload(profile: Profile, suffix: string, openDrive = false) {
+async function triggerDocxDownload(profile: Profile, suffix: string) {
   const blob = await generateDocxBlob(profile)
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
@@ -25,11 +27,12 @@ async function triggerDocxDownload(profile: Profile, suffix: string, openDrive =
   a.download = `${slugify(profile.name)}-${suffix}.docx`
   a.click()
   URL.revokeObjectURL(url)
-  if (openDrive) window.open('https://drive.google.com', '_blank', 'noopener')
 }
 
 export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownloadButtonProps) {
   const [open, setOpen] = useState(false)
+  const [googleDocStatus, setGoogleDocStatus] = useState<GoogleDocStatus>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
   const ref = useRef<HTMLDivElement>(null)
   const pdfFileName = `${slugify(profile.name)}-resume.pdf`
 
@@ -43,8 +46,43 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
     return () => document.removeEventListener('mousedown', handleOutside)
   }, [])
 
+  async function handleGoogleDoc(closeParent?: () => void) {
+    try {
+      setGoogleDocStatus('signing-in')
+      const token = await getGoogleAccessToken()
+
+      setGoogleDocStatus('uploading')
+      const blob = await generateDocxBlob(profile)
+      const docUrl = await uploadDocxToDrive(
+        blob,
+        `${profile.name} — Resume`,
+        token
+      )
+
+      setGoogleDocStatus('idle')
+      closeParent?.()
+      window.open(docUrl, '_blank', 'noopener')
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Unknown error'
+      // Treat user cancellation silently
+      if (msg === 'access_denied' || msg === 'popup_closed_by_user') {
+        setGoogleDocStatus('idle')
+        return
+      }
+      setErrorMsg('Upload failed — try again')
+      setGoogleDocStatus('error')
+      setTimeout(() => setGoogleDocStatus('idle'), 3000)
+    }
+  }
+
+  function googleDocLabel(status: GoogleDocStatus) {
+    if (status === 'signing-in') return 'Signing in…'
+    if (status === 'uploading') return 'Uploading…'
+    if (status === 'error') return errorMsg
+    return 'Google Doc'
+  }
+
   if (variant === 'menu-item') {
-    // Mobile: render three flat items directly into the parent ··· dropdown
     return (
       <>
         <PDFDownloadLink
@@ -67,16 +105,17 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
         </button>
         <button
           data-testid="download-google-doc"
-          onClick={() => { triggerDocxDownload(profile, 'resume', true); onClose?.() }}
-          className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
+          disabled={googleDocStatus !== 'idle'}
+          onClick={() => handleGoogleDoc(onClose)}
+          className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left disabled:opacity-60"
         >
-          Google Doc
+          {googleDocLabel(googleDocStatus)}
         </button>
       </>
     )
   }
 
-  // Desktop: "Download CV ▾" pill that opens its own dropdown
+  // Desktop pill variant
   return (
     <div className="hidden sm:block relative" ref={ref} data-testid="download-cv-wrapper">
       <button
@@ -115,10 +154,11 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
           </button>
           <button
             data-testid="download-google-doc-desktop"
-            onClick={() => { triggerDocxDownload(profile, 'resume', true); setOpen(false) }}
-            className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
+            disabled={googleDocStatus !== 'idle'}
+            onClick={() => handleGoogleDoc(() => setOpen(false))}
+            className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left disabled:opacity-60"
           >
-            Google Doc
+            {googleDocLabel(googleDocStatus)}
           </button>
         </div>
       )}
