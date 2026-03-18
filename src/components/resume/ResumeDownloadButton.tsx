@@ -71,7 +71,10 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
       }
       setErrorMsg('Upload failed — try again')
       setGoogleDocStatus('error')
-      setTimeout(() => setGoogleDocStatus('idle'), 3000)
+      setTimeout(() => {
+        setGoogleDocStatus('idle')
+        setErrorMsg('')
+      }, 3000)
     }
   }
 
@@ -98,7 +101,7 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
         </PDFDownloadLink>
         <button
           data-testid="download-word"
-          onClick={() => { triggerDocxDownload(profile, 'resume'); onClose?.() }}
+          onClick={() => { void triggerDocxDownload(profile, 'resume'); onClose?.() }}
           className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
         >
           Download Word
@@ -147,7 +150,7 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
           </PDFDownloadLink>
           <button
             data-testid="download-word-desktop"
-            onClick={() => { triggerDocxDownload(profile, 'resume'); setOpen(false) }}
+            onClick={() => { void triggerDocxDownload(profile, 'resume'); setOpen(false) }}
             className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
           >
             Word (.docx)
