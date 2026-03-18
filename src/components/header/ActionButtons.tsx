@@ -63,7 +63,7 @@ export function ActionButtons({ linkedinUrl, email, profile }: ActionButtonsProp
           </button>
 
           {menuOpen && (
-            <div className="absolute left-0 sm:left-auto sm:right-0 top-11 w-52 bg-white rounded-lg shadow-lg border border-li-border z-20 py-1">
+            <div className="absolute right-0 top-11 w-52 bg-white rounded-lg shadow-lg border border-li-border z-20 py-1">
               {email && (
                 <a
                   href={`mailto:${email}`}
