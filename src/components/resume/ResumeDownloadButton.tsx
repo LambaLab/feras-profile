@@ -1,6 +1,6 @@
 // src/components/resume/ResumeDownloadButton.tsx
 import { useState, useRef, useEffect } from 'react'
-import { PDFDownloadLink } from '@react-pdf/renderer'
+import { pdf } from '@react-pdf/renderer'
 import { ResumePDF } from './ResumePDF'
 import { generateDocxBlob } from './generateDocx'
 import { getGoogleAccessToken } from '../../lib/googleAuth'
@@ -19,6 +19,16 @@ function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 }
 
+async function triggerPdfDownload(profile: Profile, fileName: string) {
+  const blob = await pdf(<ResumePDF profile={profile} />).toBlob()
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = fileName
+  a.click()
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
+}
+
 async function triggerDocxDownload(profile: Profile, suffix: string) {
   const blob = await generateDocxBlob(profile)
   const url = URL.createObjectURL(blob)
@@ -26,7 +36,7 @@ async function triggerDocxDownload(profile: Profile, suffix: string) {
   a.href = url
   a.download = `${slugify(profile.name)}-${suffix}.docx`
   a.click()
-  URL.revokeObjectURL(url)
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 
 export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownloadButtonProps) {
@@ -88,17 +98,13 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
   if (variant === 'menu-item') {
     return (
       <>
-        <PDFDownloadLink
-          document={<ResumePDF profile={profile} />}
-          fileName={pdfFileName}
-          onClick={onClose}
+        <button
+          data-testid="download-pdf"
+          onClick={() => { void triggerPdfDownload(profile, pdfFileName); onClose?.() }}
+          className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
         >
-          {({ loading }) => (
-            <span className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full cursor-pointer">
-              {loading ? 'Building PDF…' : 'Download PDF'}
-            </span>
-          )}
-        </PDFDownloadLink>
+          Download PDF
+        </button>
         <button
           data-testid="download-word"
           onClick={() => { void triggerDocxDownload(profile, 'resume'); onClose?.() }}
@@ -137,17 +143,13 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
           data-testid="download-cv-menu"
           className="absolute left-0 top-10 w-44 bg-white rounded-lg shadow-lg border border-li-border z-20 py-1"
         >
-          <PDFDownloadLink
-            document={<ResumePDF profile={profile} />}
-            fileName={pdfFileName}
-            onClick={() => setOpen(false)}
+          <button
+            data-testid="download-pdf-desktop"
+            onClick={() => { void triggerPdfDownload(profile, pdfFileName); setOpen(false) }}
+            className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
           >
-            {({ loading }) => (
-              <span className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full cursor-pointer">
-                {loading ? 'Building…' : 'PDF'}
-              </span>
-            )}
-          </PDFDownloadLink>
+            PDF
+          </button>
           <button
             data-testid="download-word-desktop"
             onClick={() => { void triggerDocxDownload(profile, 'resume'); setOpen(false) }}
