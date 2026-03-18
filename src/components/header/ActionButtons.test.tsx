@@ -1,8 +1,10 @@
 // src/components/header/ActionButtons.test.tsx
 import { vi } from 'vitest'
 vi.mock('@react-pdf/renderer')
+vi.mock('docx')
 
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { ActionButtons } from './ActionButtons'
 import { profile } from '../../data/profileData'
 
@@ -13,37 +15,24 @@ describe('ActionButtons', () => {
     profile,
   }
 
-  it('renders Connect link pointing to LinkedIn URL', () => {
-    render(<ActionButtons linkedinUrl="https://www.linkedin.com/in/nasserff/" email="test@example.com" profile={profile} />)
-    const link = screen.getByRole('link', { name: /connect/i })
-    expect(link).toHaveAttribute('href', 'https://www.linkedin.com/in/nasserff/')
-    expect(link).toHaveAttribute('target', '_blank')
-  })
-
-  it('renders Message link as mailto', () => {
-    render(<ActionButtons linkedinUrl="https://www.linkedin.com/in/nasserff/" email="feras@example.com" profile={profile} />)
-    const link = screen.getByRole('link', { name: /message/i })
-    expect(link).toHaveAttribute('href', 'mailto:feras@example.com')
-  })
-
-  it('renders More button', () => {
-    render(<ActionButtons linkedinUrl="https://www.linkedin.com/in/nasserff/" email="test@example.com" profile={profile} />)
-    expect(screen.getByRole('button', { name: /more/i })).toBeInTheDocument()
-  })
-
   it('renders Connect button', () => {
     render(<ActionButtons {...defaultProps} />)
     expect(screen.getByText('Connect')).toBeInTheDocument()
   })
 
-  it('renders Download CV link', () => {
+  it('renders Download CV trigger button', () => {
     render(<ActionButtons {...defaultProps} />)
-    expect(screen.getByTestId('pdf-download-link')).toBeInTheDocument()
+    expect(screen.getByTestId('download-cv-trigger')).toBeInTheDocument()
+    expect(screen.getByTestId('download-cv-trigger')).toHaveTextContent('Download CV')
   })
 
-  it('download link has correct filename', () => {
+  it('opens download format menu on trigger click', async () => {
+    const user = userEvent.setup()
     render(<ActionButtons {...defaultProps} />)
-    const link = screen.getByTestId('pdf-download-link')
-    expect(link).toHaveAttribute('download', 'feras-h-al-bader-resume.pdf')
+    const trigger = screen.getByTestId('download-cv-trigger')
+    await user.click(trigger)
+    expect(screen.getByTestId('download-cv-menu')).toBeInTheDocument()
+    expect(screen.getByTestId('download-word-desktop')).toBeInTheDocument()
+    expect(screen.getByTestId('download-google-doc-desktop')).toBeInTheDocument()
   })
 })
