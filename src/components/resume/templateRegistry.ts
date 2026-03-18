@@ -1,6 +1,8 @@
 // src/components/resume/templateRegistry.ts
 import { ResumePDF_Classic } from './templates/ResumePDF_Classic'
+import { ResumePDF_Executive } from './templates/ResumePDF_Executive'
 import { generateDocxBlob } from './generateDocx'
+import { generateDocxBlob_Executive } from './generateDocx_Executive'
 import type { Profile } from '../../data/profileData'
 import type { ComponentType } from 'react'
 
@@ -14,7 +16,7 @@ export interface Template {
 export const TEMPLATES: Template[] = [
   { id: 'classic', name: 'Classic', component: ResumePDF_Classic, generateDocx: generateDocxBlob },
   // placeholders — filled in Tasks 2-5:
-  { id: 'executive', name: 'Executive', component: ResumePDF_Classic, generateDocx: generateDocxBlob },
+  { id: 'executive', name: 'Executive', component: ResumePDF_Executive, generateDocx: generateDocxBlob_Executive },
   { id: 'modern', name: 'Modern', component: ResumePDF_Classic, generateDocx: generateDocxBlob },
   { id: 'compact', name: 'Compact', component: ResumePDF_Classic, generateDocx: generateDocxBlob },
   { id: 'minimal', name: 'Minimal', component: ResumePDF_Classic, generateDocx: generateDocxBlob },
