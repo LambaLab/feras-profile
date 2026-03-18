@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 22,
     fontFamily: 'Helvetica-Bold',
-    marginBottom: 3,
+    marginBottom: 8,
   },
   headline: {
-    fontSize: 11,
+    fontSize: 10.5,
     color: GRAY,
-    marginBottom: 4,
+    marginBottom: 6,
   },
   metaRow: {
     flexDirection: 'row',
