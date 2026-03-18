@@ -25,6 +25,10 @@ function googleDocLabel(status: GoogleDocStatus, errorMsg: string): string {
   return 'Open as Google Doc'
 }
 
+// Derive the `document` prop type directly from BlobProvider so we never need
+// to import the non-exported DocumentProps interface from @react-pdf/renderer
+type PDFDocument = React.ComponentProps<typeof BlobProvider>['document']
+
 const A4_W = 793
 const A4_H = 1122
 const THUMB_H = 200
@@ -50,7 +54,7 @@ export function TemplatePickerModal({
     () =>
       Object.fromEntries(
         TEMPLATES.map(t => [t.id, <t.component profile={profile} />])
-      ) as Record<string, React.ReactElement>,
+      ) as Record<string, PDFDocument>,
     [profile]
   )
 
