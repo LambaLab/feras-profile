@@ -17,7 +17,7 @@ function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 }
 
-async function triggerDocxDownload(profile: Profile, suffix: string) {
+async function triggerDocxDownload(profile: Profile, suffix: string, openDrive = false) {
   const blob = await generateDocxBlob(profile)
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
@@ -25,6 +25,7 @@ async function triggerDocxDownload(profile: Profile, suffix: string) {
   a.download = `${slugify(profile.name)}-${suffix}.docx`
   a.click()
   URL.revokeObjectURL(url)
+  if (openDrive) window.open('https://drive.google.com', '_blank', 'noopener')
 }
 
 export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownloadButtonProps) {
@@ -66,7 +67,7 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
         </button>
         <button
           data-testid="download-google-doc"
-          onClick={() => { triggerDocxDownload(profile, 'google-doc'); onClose?.() }}
+          onClick={() => { triggerDocxDownload(profile, 'resume', true); onClose?.() }}
           className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
         >
           Google Doc
@@ -114,7 +115,7 @@ export function ResumeDownloadButton({ profile, variant, onClose }: ResumeDownlo
           </button>
           <button
             data-testid="download-google-doc-desktop"
-            onClick={() => { triggerDocxDownload(profile, 'google-doc'); setOpen(false) }}
+            onClick={() => { triggerDocxDownload(profile, 'resume', true); setOpen(false) }}
             className="flex items-center gap-2 px-4 py-2.5 text-sm text-li-text hover:bg-gray-50 w-full text-left"
           >
             Google Doc
