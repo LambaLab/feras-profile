@@ -86,15 +86,19 @@ export function TemplatePickerModal({
 
   // Responsive preview dimensions — recalculated each time preview opens
   const previewDims = useMemo(() => {
-    if (typeof window === 'undefined') return { w: 540, scale: 0.681, h: 764 }
+    if (typeof window === 'undefined') return { w: 540, scale: 0.681, h: 764, mobile: false }
     const vw = window.innerWidth
     const isMobile = vw < 640
-    // Modal: min(95vw, 880px); body padding p-3 mobile / p-4 desktop
+    if (isMobile) {
+      // Mobile: fixed readable scale (text stays legible), body scrolls both axes
+      const scale = 0.65
+      return { w: Math.round(A4_W * scale), scale, h: Math.round(A4_H * scale), mobile: true }
+    }
+    // Desktop: scale A4 to fill the wide modal (Google Doc width feel)
     const modalW = Math.min(vw * 0.95, 880)
-    const bodyPad = isMobile ? 24 : 32
-    const w = Math.floor(modalW - bodyPad)
+    const w = Math.floor(modalW - 32) // minus p-4 body padding
     const scale = w / A4_W
-    return { w, scale, h: Math.round(A4_H * scale) }
+    return { w, scale, h: Math.round(A4_H * scale), mobile: false }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [previewId])
 
@@ -284,8 +288,9 @@ export function TemplatePickerModal({
               </div>
             </div>
 
-            {/* Preview body — scrollable, Google-Doc-style gray background */}
-            <div className="overflow-y-auto bg-gray-200 p-3 sm:p-4">
+            {/* Preview body — on mobile: overflow both axes so user can scroll/read;
+                on desktop: vertical scroll only (content fits width) */}
+            <div className={`bg-gray-200 p-2 sm:p-4 ${previewDims.mobile ? 'overflow-auto' : 'overflow-y-auto'}`}>
               {(() => {
                 // Use the already-cached blob URL if available (avoids second BlobProvider
                 // and prevents the "black after close" race condition)
@@ -333,6 +338,12 @@ export function TemplatePickerModal({
                   </BlobProvider>
                 )
               })()}
+              {/* Mobile scroll hint */}
+              {previewDims.mobile && (
+                <p className="mt-2 text-center text-xs text-gray-400 select-none">
+                  Scroll to read ↕ ↔
+                </p>
+              )}
             </div>
           </div>
         </div>
