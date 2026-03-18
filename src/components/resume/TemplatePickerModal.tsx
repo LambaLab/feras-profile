@@ -1,5 +1,5 @@
 // src/components/resume/TemplatePickerModal.tsx
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { BlobProvider } from '@react-pdf/renderer'
 import { TEMPLATES } from './templateRegistry'
 import type { TemplateId } from './templateRegistry'
@@ -30,10 +30,6 @@ const A4_H = 1122
 const THUMB_H = 200
 const THUMB_SCALE = THUMB_H / A4_H
 
-const PREVIEW_W = 540
-const PREVIEW_SCALE = PREVIEW_W / A4_W
-const PREVIEW_H = Math.round(A4_H * PREVIEW_SCALE)
-
 export function TemplatePickerModal({
   profile,
   selectedId,
@@ -48,7 +44,17 @@ export function TemplatePickerModal({
   const [previewId, setPreviewId] = useState<TemplateId | null>(null)
   const [mobileStep, setMobileStep] = useState<1 | 2>(1)
 
-  // Store blob URLs by template id to avoid re-creating on each render
+  // ── FIX: memoize document instances so BlobProvider never sees a changed
+  // `document` prop (which would reset it to loading=true → black thumbnail)
+  const docElements = useMemo(
+    () =>
+      Object.fromEntries(
+        TEMPLATES.map(t => [t.id, <t.component profile={profile} />])
+      ) as Record<string, React.ReactElement>,
+    [profile]
+  )
+
+  // Blob URL cache — keyed by template id, revoked on modal unmount
   const blobUrlMap = useRef<Record<string, string>>({})
   useEffect(() => {
     const map = blobUrlMap.current
@@ -62,6 +68,7 @@ export function TemplatePickerModal({
     return blobUrlMap.current[id]
   }
 
+  // Escape: close preview first, then modal
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
       if (e.key === 'Escape') {
@@ -72,6 +79,20 @@ export function TemplatePickerModal({
     document.addEventListener('keydown', handleKey)
     return () => document.removeEventListener('keydown', handleKey)
   }, [onClose, previewId])
+
+  // Responsive preview dimensions — recalculated each time preview opens
+  const previewDims = useMemo(() => {
+    if (typeof window === 'undefined') return { w: 540, scale: 0.681, h: 764 }
+    const vw = window.innerWidth
+    const isMobile = vw < 640
+    // Modal: min(95vw, 880px); body padding p-3 mobile / p-4 desktop
+    const modalW = Math.min(vw * 0.95, 880)
+    const bodyPad = isMobile ? 24 : 32
+    const w = Math.floor(modalW - bodyPad)
+    const scale = w / A4_W
+    return { w, scale, h: Math.round(A4_H * scale) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [previewId])
 
   const selectedName = TEMPLATES.find(t => t.id === selectedId)?.name ?? ''
   const previewTemplate = previewId ? TEMPLATES.find(t => t.id === previewId) : null
@@ -102,7 +123,7 @@ export function TemplatePickerModal({
 
   return (
     <>
-      {/* Main modal */}
+      {/* ── Main picker modal ── */}
       <div
         data-testid="modal-overlay"
         className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
@@ -141,72 +162,67 @@ export function TemplatePickerModal({
           {/* Template grid — hidden on mobile step 2 */}
           <div className={`grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4 ${mobileStep === 2 ? 'hidden sm:grid' : ''}`}>
             {TEMPLATES.map(template => (
-              <button
-                key={template.id}
-                data-testid={`template-card-${template.id}`}
-                onClick={() => onSelect(template.id as TemplateId)}
-                className={`rounded-lg border-2 overflow-hidden text-left transition-all group relative ${
-                  selectedId === template.id
-                    ? 'border-li-blue shadow-md'
-                    : 'border-gray-200 hover:border-gray-400'
-                }`}
-              >
-                {/* PDF Thumbnail — centered */}
-                <div className="relative w-full bg-gray-50 overflow-hidden" style={{ height: THUMB_H }}>
-                  <BlobProvider document={<template.component profile={profile} />}>
-                    {({ blob, loading }) => {
-                      if (loading || !blob) {
+              <div key={template.id} className="flex flex-col gap-1">
+                {/* Card button — clicking selects this template */}
+                <button
+                  data-testid={`template-card-${template.id}`}
+                  onClick={() => onSelect(template.id as TemplateId)}
+                  className={`rounded-lg border-2 overflow-hidden text-left transition-all ${
+                    selectedId === template.id
+                      ? 'border-li-blue shadow-md'
+                      : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  {/* PDF thumbnail — centered in card */}
+                  <div className="relative w-full bg-gray-50 overflow-hidden" style={{ height: THUMB_H }}>
+                    <BlobProvider document={docElements[template.id]}>
+                      {({ blob, loading }) => {
+                        if (loading || !blob) {
+                          return (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="w-6 h-6 border-2 border-gray-300 border-t-li-blue rounded-full animate-spin" />
+                            </div>
+                          )
+                        }
+                        const url = getBlobUrl(template.id, blob)
                         return (
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-6 h-6 border-2 border-gray-300 border-t-li-blue rounded-full animate-spin" />
-                          </div>
+                          <iframe
+                            src={url}
+                            title={template.name}
+                            className="absolute border-0 pointer-events-none"
+                            style={{
+                              width: `${A4_W}px`,
+                              height: `${A4_H}px`,
+                              transformOrigin: 'top center',
+                              transform: `scale(${THUMB_SCALE})`,
+                              left: `calc(50% - ${A4_W / 2}px)`,
+                              top: 0,
+                            }}
+                          />
                         )
-                      }
-                      const url = getBlobUrl(template.id, blob)
-                      return (
-                        <iframe
-                          src={url}
-                          title={template.name}
-                          className="absolute border-0 pointer-events-none"
-                          style={{
-                            width: `${A4_W}px`,
-                            height: `${A4_H}px`,
-                            transformOrigin: 'top center',
-                            transform: `scale(${THUMB_SCALE})`,
-                            left: `calc(50% - ${A4_W / 2}px)`,
-                            top: 0,
-                          }}
-                        />
-                      )
-                    }}
-                  </BlobProvider>
+                      }}
+                    </BlobProvider>
+                  </div>
 
-                  {/* Preview icon overlay — appears on hover (desktop) */}
-                  <button
-                    data-testid={`preview-btn-${template.id}`}
-                    onClick={e => {
-                      e.stopPropagation()
-                      setPreviewId(template.id as TemplateId)
-                    }}
-                    className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/25 transition-colors"
-                    aria-label={`Preview ${template.name}`}
-                    tabIndex={-1}
-                  >
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 text-gray-800 text-xs font-semibold px-2.5 py-1 rounded-full shadow">
-                      Preview
-                    </span>
-                  </button>
-                </div>
+                  {/* Template name bar */}
+                  <div className={`px-3 py-2 text-sm font-medium ${
+                    selectedId === template.id
+                      ? 'text-li-blue bg-li-blue-light'
+                      : 'text-gray-700'
+                  }`}>
+                    {template.name}
+                  </div>
+                </button>
 
-                {/* Template name bar */}
-                <div className={`px-3 py-2 text-sm font-medium ${
-                  selectedId === template.id
-                    ? 'text-li-blue bg-li-blue-light'
-                    : 'text-gray-700'
-                }`}>
-                  {template.name}
-                </div>
-              </button>
+                {/* Preview button — explicit, below card, not hover-triggered */}
+                <button
+                  data-testid={`preview-btn-${template.id}`}
+                  onClick={() => setPreviewId(template.id as TemplateId)}
+                  className="text-xs text-gray-400 hover:text-li-blue transition-colors text-center py-0.5 leading-none"
+                >
+                  Preview ↗
+                </button>
+              </div>
             ))}
           </div>
 
@@ -229,16 +245,16 @@ export function TemplatePickerModal({
         </div>
       </div>
 
-      {/* Preview lightbox — stacked above the modal */}
+      {/* ── Preview lightbox — stacked above the picker ── */}
       {previewTemplate && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black/80 p-4"
+          className="fixed inset-0 flex items-center justify-center bg-black/80 p-2 sm:p-4"
           style={{ zIndex: 60 }}
           onClick={() => setPreviewId(null)}
         >
           <div
-            className="bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden"
-            style={{ width: `min(90vw, ${PREVIEW_W + 32}px)`, maxHeight: '92vh' }}
+            className="bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden w-full"
+            style={{ maxWidth: 880, maxHeight: '92vh' }}
             onClick={e => e.stopPropagation()}
           >
             {/* Preview header */}
@@ -264,40 +280,55 @@ export function TemplatePickerModal({
               </div>
             </div>
 
-            {/* Preview body — scrollable */}
-            <div className="overflow-y-auto bg-gray-100 p-4">
-              <BlobProvider document={<previewTemplate.component profile={profile} />}>
-                {({ blob, loading }) => {
-                  if (loading || !blob) {
-                    return (
-                      <div className="flex items-center justify-center" style={{ height: PREVIEW_H }}>
-                        <div className="w-8 h-8 border-2 border-gray-300 border-t-li-blue rounded-full animate-spin" />
-                      </div>
-                    )
-                  }
-                  const url = getBlobUrl(previewTemplate.id, blob)
-                  return (
-                    <div
-                      className="relative mx-auto bg-white shadow"
-                      style={{ width: PREVIEW_W, height: PREVIEW_H }}
-                    >
-                      <iframe
-                        src={url}
-                        title={`Preview ${previewTemplate.name}`}
-                        className="absolute border-0 pointer-events-none"
-                        style={{
-                          width: `${A4_W}px`,
-                          height: `${A4_H}px`,
-                          transformOrigin: 'top left',
-                          transform: `scale(${PREVIEW_SCALE})`,
-                          top: 0,
-                          left: 0,
-                        }}
-                      />
-                    </div>
-                  )
-                }}
-              </BlobProvider>
+            {/* Preview body — scrollable, Google-Doc-style gray background */}
+            <div className="overflow-y-auto bg-gray-200 p-3 sm:p-4">
+              {(() => {
+                // Use the already-cached blob URL if available (avoids second BlobProvider
+                // and prevents the "black after close" race condition)
+                const cachedUrl = blobUrlMap.current[previewTemplate.id]
+
+                const frame = (url: string) => (
+                  <div
+                    className="relative mx-auto bg-white shadow-md"
+                    style={{ width: previewDims.w, height: previewDims.h }}
+                  >
+                    <iframe
+                      src={url}
+                      title={`Preview ${previewTemplate.name}`}
+                      className="absolute border-0 pointer-events-none"
+                      style={{
+                        width: `${A4_W}px`,
+                        height: `${A4_H}px`,
+                        transformOrigin: 'top left',
+                        transform: `scale(${previewDims.scale})`,
+                        top: 0,
+                        left: 0,
+                      }}
+                    />
+                  </div>
+                )
+
+                if (cachedUrl) return frame(cachedUrl)
+
+                // Fallback: blob not yet ready (user opened preview very quickly)
+                return (
+                  <BlobProvider document={docElements[previewTemplate.id]}>
+                    {({ blob, loading }) => {
+                      if (loading || !blob) {
+                        return (
+                          <div
+                            className="flex items-center justify-center"
+                            style={{ width: previewDims.w, height: Math.min(previewDims.h, 400) }}
+                          >
+                            <div className="w-8 h-8 border-2 border-gray-300 border-t-li-blue rounded-full animate-spin" />
+                          </div>
+                        )
+                      }
+                      return frame(getBlobUrl(previewTemplate.id, blob))
+                    }}
+                  </BlobProvider>
+                )
+              })()}
             </div>
           </div>
         </div>
