@@ -26,13 +26,13 @@ describe('ActionButtons', () => {
     expect(screen.getByTestId('download-cv-trigger')).toHaveTextContent('Download CV')
   })
 
-  it('opens download format menu on trigger click', async () => {
+  it('opens template picker modal on trigger click', async () => {
     const user = userEvent.setup()
     render(<ActionButtons {...defaultProps} />)
     const trigger = screen.getByTestId('download-cv-trigger')
     await user.click(trigger)
-    expect(screen.getByTestId('download-cv-menu')).toBeInTheDocument()
-    expect(screen.getByTestId('download-word-desktop')).toBeInTheDocument()
-    expect(screen.getByTestId('download-google-doc-desktop')).toBeInTheDocument()
+    expect(screen.getByTestId('modal-overlay')).toBeInTheDocument()
+    expect(screen.getByText('Download PDF')).toBeInTheDocument()
+    expect(screen.getByText('Download Word')).toBeInTheDocument()
   })
 })
