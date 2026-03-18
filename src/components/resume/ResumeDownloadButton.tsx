@@ -13,7 +13,7 @@ interface ResumeDownloadButtonProps {
   onClose?: () => void
 }
 
-type GoogleDocStatus = 'idle' | 'signing-in' | 'uploading' | 'error'
+export type GoogleDocStatus = 'idle' | 'signing-in' | 'uploading' | 'error'
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
