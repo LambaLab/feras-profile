@@ -1,6 +1,7 @@
 // src/components/resume/templates/ResumePDF_Executive.tsx
 import { Document, Page, View, Text, Link, StyleSheet } from '@react-pdf/renderer'
 import type { Profile } from '../../../data/profileData'
+import { parseDescription } from './resumeUtils'
 
 const NAVY = '#1B2A4A'
 const NAVY_LIGHT = '#9FB3D1'
@@ -9,6 +10,7 @@ const BLACK = '#111111'
 const GRAY = '#4B5563'
 const LIGHT = '#9CA3AF'
 const RULE = '#CBD5E1'
+const WHITE = '#FFFFFF'
 
 const styles = StyleSheet.create({
   page: {
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontFamily: 'Helvetica-Bold',
-    color: '#FFFFFF',
+    color: WHITE,
     marginBottom: 6,
   },
   headline: {
@@ -83,14 +85,9 @@ const styles = StyleSheet.create({
   skillsText: { fontSize: 9, color: BLACK, lineHeight: 1.5 },
 })
 
-function parseDescription(description: string) {
-  const blocks = description.split('\n\n')
-  const intro = blocks[0] ?? ''
-  const bullets = blocks.slice(1).flatMap(b => b.split('\n')).filter(l => l.trim().length > 0)
-  return { intro, bullets }
-}
+interface ResumePDF_ExecutiveProps { profile: Profile }
 
-export function ResumePDF_Executive({ profile }: { profile: Profile }) {
+export function ResumePDF_Executive({ profile }: ResumePDF_ExecutiveProps) {
   const allSkills = [
     ...profile.skills.pinned, ...profile.skills.hard,
     ...profile.skills.industry, ...profile.skills.soft, ...profile.skills.emerging,

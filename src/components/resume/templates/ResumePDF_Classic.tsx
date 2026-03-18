@@ -1,6 +1,7 @@
 // src/components/resume/templates/ResumePDF_Classic.tsx
 import { Document, Page, View, Text, Link, StyleSheet } from '@react-pdf/renderer'
 import type { Profile } from '../../../data/profileData'
+import { parseDescription } from './resumeUtils'
 
 const BLUE = '#0A66C2'
 const BLACK = '#111111'
@@ -146,16 +147,6 @@ const styles = StyleSheet.create({
     color: LIGHT,
   },
 })
-
-function parseDescription(description: string): { intro: string; bullets: string[] } {
-  const blocks = description.split('\n\n')
-  const intro = blocks[0] ?? ''
-  const bullets = blocks
-    .slice(1)
-    .flatMap(b => b.split('\n'))
-    .filter(line => line.trim().length > 0)
-  return { intro, bullets }
-}
 
 interface ResumePDF_ClassicProps {
   profile: Profile

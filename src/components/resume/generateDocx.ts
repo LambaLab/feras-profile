@@ -7,16 +7,7 @@ import {
   BorderStyle,
 } from 'docx'
 import type { Profile } from '../../data/profileData'
-
-function parseDescription(description: string): { intro: string; bullets: string[] } {
-  const blocks = description.split('\n\n')
-  const intro = blocks[0] ?? ''
-  const bullets = blocks
-    .slice(1)
-    .flatMap(b => b.split('\n'))
-    .filter(l => l.trim().length > 0)
-  return { intro, bullets }
-}
+import { parseDescription } from './templates/resumeUtils'
 
 function sectionHeading(label: string): Paragraph {
   return new Paragraph({

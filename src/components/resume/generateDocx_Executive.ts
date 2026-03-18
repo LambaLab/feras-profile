@@ -1,13 +1,7 @@
 // src/components/resume/generateDocx_Executive.ts
 import { Document, Paragraph, TextRun, Packer, BorderStyle, ShadingType } from 'docx'
 import type { Profile } from '../../data/profileData'
-
-function parseDescription(description: string) {
-  const blocks = description.split('\n\n')
-  const intro = blocks[0] ?? ''
-  const bullets = blocks.slice(1).flatMap(b => b.split('\n')).filter(l => l.trim().length > 0)
-  return { intro, bullets }
-}
+import { parseDescription } from './templates/resumeUtils'
 
 function sectionHeading(label: string): Paragraph {
   return new Paragraph({
@@ -86,6 +80,7 @@ export async function generateDocxBlob_Executive(profile: Profile): Promise<Blob
   const doc = new Document({
     creator: profile.name,
     title: `${profile.name} — Resume`,
+    description: 'Professional Resume',
     sections: [{ properties: { page: { margin: { top: 0, bottom: 720, left: 900, right: 900 } } }, children }],
   })
   return Packer.toBlob(doc)
