@@ -52,7 +52,7 @@ export function ResumePDF_Modern({ profile }: ResumePDF_ModernProps) {
     ...profile.skills.industry, ...profile.skills.soft, ...profile.skills.emerging,
   ]
   return (
-    <Document title={`${profile.name} — Resume`} author={profile.name} subject="Professional Resume" creator={profile.name} description="Professional Resume">
+    <Document title={`${profile.name} — Resume`} author={profile.name} subject="Professional Resume" creator={profile.name}>
       <Page size="A4" style={styles.page}>
         {/* Sidebar */}
         <View style={styles.sidebar}>

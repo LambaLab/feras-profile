@@ -47,7 +47,7 @@ export function ResumePDF_Minimal({ profile }: ResumePDF_MinimalProps) {
     ...profile.skills.industry, ...profile.skills.soft, ...profile.skills.emerging,
   ]
   return (
-    <Document title={`${profile.name} — Resume`} author={profile.name} subject="Professional Resume" creator={profile.name} description="Professional Resume">
+    <Document title={`${profile.name} — Resume`} author={profile.name} subject="Professional Resume" creator={profile.name}>
       <Page size="A4" style={styles.page}>
         <Text style={styles.name}>{profile.name}</Text>
         <Text style={styles.headline}>{profile.headline}</Text>
