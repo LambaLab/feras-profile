@@ -1,4 +1,4 @@
-// src/components/resume/ResumePDF.tsx
+// src/components/resume/templates/ResumePDF_Classic.tsx
 import { Document, Page, View, Text, Link, StyleSheet } from '@react-pdf/renderer'
 import type { Profile } from '../../../data/profileData'
 
@@ -157,11 +157,11 @@ function parseDescription(description: string): { intro: string; bullets: string
   return { intro, bullets }
 }
 
-interface ResumePDFProps {
+interface ResumePDF_ClassicProps {
   profile: Profile
 }
 
-export function ResumePDF_Classic({ profile }: ResumePDFProps) {
+export function ResumePDF_Classic({ profile }: ResumePDF_ClassicProps) {
   const allSkills = [
     ...profile.skills.pinned,
     ...profile.skills.hard,

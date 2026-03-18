@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { TEMPLATES } from './templateRegistry'
+import type { TemplateId } from './templateRegistry'
 
 describe('templateRegistry', () => {
   it('has 5 templates', () => {
@@ -17,5 +18,10 @@ describe('templateRegistry', () => {
 
   it('first template is classic', () => {
     expect(TEMPLATES[0].id).toBe('classic')
+  })
+
+  it('TEMPLATES ids match TemplateId union', () => {
+    const expectedIds: TemplateId[] = ['classic', 'executive', 'modern', 'compact', 'minimal']
+    expect(TEMPLATES.map(t => t.id)).toEqual(expectedIds)
   })
 })
