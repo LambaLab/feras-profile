@@ -43,7 +43,7 @@ export default function App({ profile }: AppProps) {
       <main className="max-w-3xl mx-auto py-4 sm:py-0 flex flex-col sm:gap-2 gap-0">
         <div className="bg-white sm:rounded-lg shadow-li-card overflow-hidden">
           <ProfileCard profile={profile} />
-          <ActionButtons linkedinUrl={profile.linkedinUrl} email={profile.email} />
+          <ActionButtons linkedinUrl={profile.linkedinUrl} email={profile.email} profile={profile} />
         </div>
         <SectionNav sections={NAV_SECTIONS} activeSection={activeSection} />
         <AboutSection text={profile.about} />

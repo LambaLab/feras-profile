@@ -1,15 +1,18 @@
+// src/components/header/ActionButtons.tsx
 import { useState, useRef, useEffect } from 'react'
+import type { Profile } from '../../data/profileData'
+import { ResumeDownloadButton } from '../resume/ResumeDownloadButton'
 
 interface ActionButtonsProps {
   linkedinUrl: string
   email: string
+  profile: Profile
 }
 
-export function ActionButtons({ linkedinUrl, email }: ActionButtonsProps) {
+export function ActionButtons({ linkedinUrl, email, profile }: ActionButtonsProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -22,8 +25,6 @@ export function ActionButtons({ linkedinUrl, email }: ActionButtonsProps) {
 
   return (
     <div className="px-4 pb-4">
-      {/* Mobile: wide Connect + small ··· circle (LinkedIn-style) */}
-      {/* Desktop: all three pills in a row */}
       <div className="flex items-center gap-2">
         {/* Primary — Connect */}
         <a
@@ -35,7 +36,7 @@ export function ActionButtons({ linkedinUrl, email }: ActionButtonsProps) {
           Connect
         </a>
 
-        {/* Secondary — Message (visible on desktop, hidden on mobile) */}
+        {/* Secondary — Message (desktop only) */}
         {email && (
           <a
             href={`mailto:${email}`}
@@ -44,6 +45,9 @@ export function ActionButtons({ linkedinUrl, email }: ActionButtonsProps) {
             Message
           </a>
         )}
+
+        {/* Download CV pill — desktop only */}
+        <ResumeDownloadButton profile={profile} variant="pill" />
 
         {/* More ··· — pill on desktop, circle on mobile */}
         <div className="relative" ref={menuRef}>
@@ -58,7 +62,6 @@ export function ActionButtons({ linkedinUrl, email }: ActionButtonsProps) {
             </svg>
           </button>
 
-          {/* Dropdown menu */}
           {menuOpen && (
             <div className="absolute left-0 sm:left-auto sm:right-0 top-11 w-52 bg-white rounded-lg shadow-lg border border-li-border z-20 py-1">
               {email && (
@@ -70,6 +73,12 @@ export function ActionButtons({ linkedinUrl, email }: ActionButtonsProps) {
                   Message
                 </a>
               )}
+              {/* Download CV — mobile (inside dropdown) */}
+              <ResumeDownloadButton
+                profile={profile}
+                variant="menu-item"
+                onClick={() => setMenuOpen(false)}
+              />
               <a
                 href={linkedinUrl}
                 target="_blank"
