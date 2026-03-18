@@ -77,7 +77,7 @@ export function ActionButtons({ linkedinUrl, email, profile }: ActionButtonsProp
               <ResumeDownloadButton
                 profile={profile}
                 variant="menu-item"
-                onClick={() => setMenuOpen(false)}
+                onClose={() => setMenuOpen(false)}
               />
               <a
                 href={linkedinUrl}
